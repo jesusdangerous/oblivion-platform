@@ -1,0 +1,25 @@
+databaseChangeLog:
+  - changeSet:
+      id: 004-create-task-tags
+      author: jesusdangerous
+      changes:
+        - createTable:
+            tableName: task_tags
+            columns:
+              - column:
+                  name: task_id
+                  type: UUID
+                  constraints:
+                    nullable: false
+              - column:
+                  name: tag
+                  type: VARCHAR(50)
+                  constraints:
+                    nullable: false
+        - addForeignKeyConstraint:
+            baseTableName: task_tags
+            baseColumnNames: task_id
+            constraintName: fk_task_tags_task
+            referencedTableName: tasks
+            referencedColumnNames: id
+            onDelete: CASCADE
