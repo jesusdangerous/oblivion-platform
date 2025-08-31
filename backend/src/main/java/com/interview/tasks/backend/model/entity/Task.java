@@ -43,6 +43,7 @@ public class Task {
     private String videoUrl;
 
     @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
     private Progress progress;
 
     @ElementCollection(targetClass = Tag.class)
@@ -51,6 +52,7 @@ public class Task {
     @Enumerated(EnumType.STRING)
     private Set<Tag> tags;
 
+    @Builder.Default
     @OneToMany(mappedBy = "task", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Comment> comments = new ArrayList<>();
 
